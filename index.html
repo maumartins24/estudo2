@@ -65,6 +65,8 @@ select,input{width:100%;padding:10px;border:1px solid var(--ln);border-radius:9p
 .stat{background:var(--card);border:1px solid var(--ln);border-radius:10px;padding:12px;text-align:center}.stat strong{display:block;font-size:22px;color:var(--ac)}
 footer{margin:30px 0 10px;padding-top:15px;border-top:1px solid var(--ln);font-size:12px;color:var(--mut)}
 a{color:var(--ac)}
+.progress{height:8px;background:var(--ln);border-radius:99px;overflow:hidden;margin:12px 0}
+.progress span{display:block;height:100%;width:0;background:var(--ac);transition:.25s}
 </style>
 </head>
 <body>
@@ -311,15 +313,20 @@ a{color:var(--ac)}
 </section>
 
 <section class="tab" data-title="Simulado">
+  <div class="alert green">
+    <b>Simulado atualizado</b>
+    20 questões focadas em <b>conceitos, distinções e aplicação prática</b> (Rito comum, Júri e Recursos). Sem cobrança direta de números de artigos. Clique na alternativa para correção imediata.
+  </div>
   <div class="toolbar">
     <button class="pill on" data-filter="all">Todas</button>
-    <button class="pill" data-filter="general">Gerais</button>
-    <button class="pill" data-filter="law">Lei seca</button>
+    <button class="pill" data-filter="jury">Júri</button>
+    <button class="pill" data-filter="rec">Recursos</button>
     <button class="pill" id="shuffleQ">Embaralhar</button>
     <button class="pill" id="resetQ">Recomeçar</button>
     <span class="score" id="score"></span>
   </div>
-  <p class="mut">Clique na alternativa. A correção aparece imediatamente. As questões misturam aula/slides e CPP/CP conferidos.</p>
+  <div class="progress"><span id="bar"></span></div>
+  <p class="mut">Clique na alternativa. A correção e a explicação aparecem imediatamente.</p>
   <div id="quiz"></div>
 </section>
 
@@ -388,37 +395,68 @@ const CARDS=[
 ["Recursos","O que é efeito regressivo?","Possibilidade de juízo de retratação, como no RESE.","Slides de Recursos"],
 ];
 
+/* Novo simulado — 20 questões conceituais (sem cobrança de números de artigos) */
 const QUESTIONS=[
-["O rito ordinário aplica-se, pelo art. 394, §1º, I, ao crime com pena máxima:",["Inferior a 2 anos","Superior a 2 e inferior a 4 anos","Igual ou superior a 4 anos","Exatamente 4 anos apenas"],2,"O texto atual usa “igual ou superior a 4 anos”."],
-["O rito sumário aplica-se, pelo CPP atual, ao crime com pena máxima:",["Inferior a 4 anos","Entre 2 e 4 anos exclusivamente","Igual ou superior a 4 anos","Somente até 2 anos"],0,"Art. 394, §1º, II: inferior a 4 anos."],
-["A resposta à acusação no rito comum é apresentada em:",["5 dias","8 dias","10 dias","15 dias"],2,"Art. 396: 10 dias."],
-["A absolvição sumária do art. 397 inclui:",["Somente prescrição","Excludente manifesta de ilicitude, excludente manifesta de culpabilidade salvo inimputabilidade, atipicidade evidente ou punibilidade extinta","Somente ausência de autoria","Somente falta de materialidade"],1,"Art. 397, I a IV."],
-["Na audiência do art. 400, o interrogatório ocorre:",["Antes do ofendido","Antes das testemunhas","Depois da oitiva das testemunhas e demais atos de instrução","Antes da citação"],2,"O art. 400 coloca o interrogatório depois dos demais atos de instrução."],
-["A pronúncia exige:",["Prova plena de autoria","Materialidade e indícios suficientes de autoria ou participação","Confissão","Apenas denúncia recebida"],1,"Art. 413."],
-["Contra a pronúncia cabe:",["Apelação","RESE","Embargos de declaração apenas","Carta testemunhável"],1,"Art. 581, IV."],
-["Contra a impronúncia cabe:",["RESE","Apelação","Agravo","Nenhum recurso"],1,"Art. 416."],
-["Contra a absolvição sumária do art. 415 cabe:",["Apelação","RESE","Carta testemunhável","Embargos infringentes"],0,"Art. 416."],
-["Contra a desclassificação do art. 419 cabe:",["Apelação","RESE","Agravo em execução","HC"],1,"Art. 581, II."],
-["A sessão do Júri é instalada com pelo menos:",["7 jurados","12 jurados","15 jurados","25 jurados"],2,"Art. 463."],
-["Cada parte pode fazer quantas recusas imotivadas?",["1","2","3","5"],2,"Art. 468: até 3 cada parte."],
-["O art. 479 exige antecedência mínima de:",["24 horas","48 horas","3 dias úteis","10 dias corridos"],2,"Documento/objeto deve ter sido juntado aos autos com antecedência mínima de 3 dias úteis e ciência da outra parte."],
-["A ordem inicial dos quesitos é:",["Autoria → materialidade → absolvição","Materialidade → autoria/participação → absolvição","Absolvição → materialidade → autoria","Qualificadora → materialidade → autoria"],1,"Art. 483."],
-["O serviço do Júri é:",["Facultativo","Obrigatório","Obrigatório só para servidores públicos","Facultativo para maiores de 18"],1,"Art. 436."],
-["A escusa de consciência gera:",["Dispensa automática sem consequência","Serviço alternativo; recusa pode suspender direitos políticos enquanto não cumprir","Prisão","Multa obrigatória"],1,"Art. 438."],
-["O conceito de recurso trabalhado nos slides é:",["Nova ação autônoma","Meio jurídico-processual para reexame total ou parcial de decisão","Meio de prova","Pedido administrativo"],1,"Definição da Teoria Geral dos Recursos."],
-["O pressuposto fundamental do recurso é:",["Ato decisório","Sucumbência","Preparo","Competência territorial"],1,"Slides: lógico = ato decisório; fundamental = sucumbência."],
-["O efeito regressivo está associado à:",["Retratação","Coisa julgada","Prescrição","Desclassificação"],0,"É o efeito ligado ao juízo de retratação."],
-["Em recurso exclusivo da defesa, o Tribunal pode agravar a pena?",["Sim, sempre","Não, em razão da vedação da reformatio in pejus","Sim, se o MP pedir depois","Somente no Júri"],1,"Art. 617 CPP."],
-["O prazo para interposição da apelação é:",["2 dias","5 dias","8 dias","10 dias"],1,"Art. 593."],
-["O prazo do RESE é:",["2 dias","5 dias","8 dias","15 dias"],1,"Art. 586; razões em 2 dias, art. 588."],
-["Os embargos de declaração no CPP têm prazo de:",["2 dias","5 dias","10 dias","15 dias"],0,"Art. 619."],
-["A pronúncia interrompe a prescrição?",["Não","Sim","Somente depois do plenário","Somente se houver condenação"],1,"Art. 117, II, CP."],
-["Além da pronúncia, o recebimento da denúncia/queixa:",["Também interrompe a prescrição","Nunca interfere na prescrição","Só suspende","Extingue a punibilidade"],0,"Art. 117, I, CP."],
-["O latrocínio, segundo a Súmula 603/STF e o material:",["É do Júri","Não é da competência do Júri","É sempre federal","É julgado pelos jurados quando tentado"],1,"Ponto destacado na aula/slides."],
-["A instituição do Júri pode ser suprimida por emenda constitucional?",["Sim","Não, por ser garantia protegida como cláusula pétrea","Somente pelo STF","Somente em guerra"],1,"Aula: art. 60, §4º, IV, CF."],
-["O atual art. 439 do CPP estabelece para o jurado:",["Prisão especial","Presunção de idoneidade moral pelo exercício efetivo da função","Imunidade penal","Isenção de qualquer processo"],1,"O texto atual do art. 439 não traz prisão especial."],
-["A prisão especial relacionada ao exercício da função de jurado aparece no:",["Art. 295, X","Art. 439","Art. 468","Art. 483"],0,"Art. 295, X."],
-["A apelação do Júri por decisão manifestamente contrária à prova, se provida, gera:",["Condenação direta pelo Tribunal","Novo julgamento; não se admite segunda apelação pelo mesmo motivo","Absolvição automática","RESE"],1,"Art. 593, III, d e §3º."],
+["No procedimento do Tribunal do Júri, após a análise da acusação e da prova produzida na primeira fase, o juiz entende que há prova da materialidade e indícios suficientes de autoria, mas não está julgando definitivamente a culpa do acusado. Qual é a decisão adequada?",
+ ["Pronúncia","Impronúncia","Absolvição sumária","Desclassificação"],0,
+ "A pronúncia funciona como juízo de admissibilidade da acusação: reconhece materialidade e indícios suficientes de autoria e permite que o acusado seja levado ao julgamento pelo Tribunal do Júri. Não é uma condenação.","jury"],
+["Em determinado processo, não foram encontrados elementos suficientes que demonstrem a materialidade do fato ou indícios suficientes de que o acusado seja seu autor. O juiz encerra aquela etapa sem julgamento definitivo do mérito. Qual conceito corresponde à situação?",
+ ["Pronúncia","Impronúncia","Absolvição sumária","Desaforamento"],1,
+ "A impronúncia ocorre quando não estão presentes os elementos necessários para submeter o acusado ao julgamento pelos jurados. É diferente da absolvição sumária, que envolve julgamento de mérito.","jury"],
+["Durante a primeira fase do Júri, fica comprovado de forma segura que o acusado não praticou o fato. Qual instituto permite que o juiz encerre o caso desde logo, com julgamento favorável ao acusado?",
+ ["Impronúncia","Pronúncia","Absolvição sumária","Desclassificação"],2,
+ "A absolvição sumária é uma decisão de mérito. Ela ocorre, entre outras hipóteses, quando está demonstrado que o acusado não é autor ou partícipe, que o fato não constitui infração penal ou que existe causa que exclua o crime ou isente de pena.","jury"],
+["O juiz conclui que os fatos narrados não correspondem a um crime doloso contra a vida de competência do Júri, mas a outra infração penal. Em vez de encaminhar o caso aos jurados, determina sua remessa ao juízo competente. Qual é a nomenclatura?",
+ ["Despronúncia","Desclassificação","Impronúncia","Absolvição sumária"],1,
+ "Na desclassificação, o juiz reconhece que a infração é diversa daquela submetida à competência do Júri e encaminha o processo ao juízo competente.","jury"],
+["Qual alternativa diferencia corretamente pronúncia e absolvição sumária?",
+ ["Ambas são decisões de mérito que encerram definitivamente o processo.","A pronúncia admite o caso para julgamento pelo Júri; a absolvição sumária resolve o mérito favoravelmente ao acusado.","A pronúncia sempre condena o acusado; a absolvição sumária apenas suspende o processo.","A pronúncia ocorre somente depois do plenário; a absolvição sumária ocorre antes da denúncia."],1,
+ "A distinção central é essa: a pronúncia não é condenação e não resolve definitivamente a culpa; ela permite o prosseguimento para o julgamento pelos jurados. A absolvição sumária é decisão de mérito.","jury"],
+["O procedimento dos crimes de competência do Tribunal do Júri é tradicionalmente descrito como bifásico ou escalonado. O que essa expressão significa?",
+ ["Que existem dois acusados obrigatoriamente em todo processo.","Que o processo possui uma primeira fase de formação do juízo de admissibilidade e uma segunda fase destinada ao julgamento perante o Júri.","Que o processo obrigatoriamente passa por dois tribunais.","Que existem duas sentenças condenatórias."],1,
+ "A estrutura é bifásica: primeiro ocorre o sumário da culpa (judicium accusationis), em que se verifica se o caso deve chegar ao Júri; depois vem o juízo da causa (judicium causae), relacionado ao julgamento em plenário.","jury"],
+["No Tribunal do Júri, qual é a principal diferença entre a atuação do juiz-presidente e a dos jurados?",
+ ["Os jurados aplicam a pena e o juiz decide a autoria.","O juiz-presidente é um juiz leigo e os jurados são togados.","Os jurados atuam como juízes de fato, enquanto o juiz-presidente exerce a função togada de condução do julgamento e de aplicação da decisão nos limites de sua competência.","Não existe diferença funcional entre eles."],2,
+ "Os jurados são cidadãos que formam o Conselho de Sentença e decidem as questões de fato submetidas à votação. O juiz-presidente é o magistrado togado que conduz o procedimento e pratica os atos que lhe competem.","jury"],
+["A defesa de um acusado no Júri pretende apresentar argumentos que ultrapassam uma defesa técnica estritamente formal e explorar as particularidades do caso perante os jurados. Qual princípio do Júri está diretamente relacionado a essa possibilidade?",
+ ["Plenitude de defesa","Unirrecorribilidade","Fungibilidade","Voluntariedade recursal"],0,
+ "A plenitude de defesa é uma característica própria do Tribunal do Júri e amplia a dimensão defensiva no julgamento perante os jurados, não se confundindo simplesmente com a defesa técnica.","jury"],
+["Durante o julgamento, um jurado procura conversar com outro jurado sobre o conteúdo da decisão que está sendo formada, contrariando a regra de incomunicabilidade. Qual é a razão central dessa regra?",
+ ["Impedir que o juiz-presidente conheça o processo.","Preservar a liberdade e a independência da formação do convencimento dos jurados.","Permitir que a defesa controle a votação.","Evitar que o Ministério Público participe do julgamento."],1,
+ "A incomunicabilidade busca proteger a independência da formação do convencimento dos jurados e a regularidade da votação.","jury"],
+["Um processo de competência do Júri apresenta circunstâncias que podem comprometer a imparcialidade do julgamento no foro originalmente competente. O processo é deslocado para outra comarca. Qual instituto está sendo utilizado?",
+ ["Desclassificação","Desaforamento","Despronúncia","Impronúncia"],1,
+ "O desaforamento consiste no deslocamento do julgamento para outra comarca, nas hipóteses admitidas, para preservar a regularidade, imparcialidade ou segurança do julgamento.","jury"],
+["Um recurso é utilizado para provocar o reexame total ou parcial de uma decisão judicial. Qual conceito geral melhor descreve esse instrumento?",
+ ["Ação autônoma de impugnação","Recurso","Denúncia","Resposta à acusação"],1,
+ "Recurso é o meio processual destinado a provocar o reexame de uma decisão, total ou parcialmente, dentro da própria relação processual.","rec"],
+["Em um recurso, antes de analisar se a decisão deve ser modificada, o órgão competente verifica se estão presentes requisitos como cabimento, tempestividade, regularidade formal, legitimidade e interesse. Essa análise corresponde a qual momento?",
+ ["Juízo de admissibilidade","Juízo de mérito","Juízo de execução","Juízo de retratação obrigatório"],0,
+ "O juízo de admissibilidade verifica se o recurso pode ser conhecido. Somente depois de superada essa etapa é que se passa, propriamente, à análise do mérito recursal.","rec"],
+["Um recurso permite que o próprio órgão que proferiu determinada decisão tenha a oportunidade de reconsiderá-la antes do julgamento definitivo pelo órgão competente. Qual efeito está relacionado a essa possibilidade?",
+ ["Efeito devolutivo","Efeito regressivo","Efeito suspensivo","Efeito expansivo"],1,
+ "O efeito regressivo, também chamado diferido ou iterativo, relaciona-se à possibilidade de retratação pelo próprio órgão que proferiu a decisão, conforme o recurso e a hipótese.","rec"],
+["A defesa interpõe recurso exclusivo em favor do acusado. No julgamento, o tribunal pretende agravar a situação do réu em comparação com a decisão anterior. Qual princípio impede esse agravamento?",
+ ["Reformatio in pejus","Reformatio in mellius","Fungibilidade","Plenitude de defesa"],0,
+ "A reformatio in pejus representa o agravamento da situação do acusado em recurso exclusivo da defesa, o que é vedado.","rec"],
+["A defesa recorre de uma condenação. O tribunal percebe que a situação do acusado poderia ser piorada, mas nenhuma acusação recorreu. O tribunal pode simplesmente aumentar a pena porque encontrou uma fundamentação que considera mais adequada?",
+ ["Sim, porque o tribunal possui liberdade absoluta para corrigir a sentença.","Não, porque o recurso exclusivo da defesa não pode resultar em agravamento da situação do acusado.","Sim, desde que o juiz-presidente concorde.","Sim, mas somente no Tribunal do Júri."],1,
+ "O recurso exclusivo da defesa não pode gerar situação mais gravosa ao acusado. Essa é a lógica da proibição da reformatio in pejus.","rec"],
+["A acusação recorre buscando uma decisão mais gravosa, mas o tribunal acaba reconhecendo uma solução que melhora a situação do acusado. Esse fenômeno é conhecido como:",
+ ["Reformatio in pejus","Reformatio in mellius","Despronúncia","Preclusão"],1,
+ "Reformatio in mellius é a melhora da situação do réu em julgamento de recurso exclusivo da acusação. O material da disciplina destaca a aceitação dessa possibilidade pela jurisprudência.","rec"],
+["Um advogado apresenta o recurso inadequado por erro justificável, sem má-fé e sem erro grosseiro, mas o recurso correto seria outro. Qual princípio pode permitir o aproveitamento do recurso?",
+ ["Unirrecorribilidade","Fungibilidade recursal","Plenitude de defesa","Soberania dos veredictos"],1,
+ "A fungibilidade recursal permite, em determinadas condições, o aproveitamento de um recurso interposto de forma inadequada, desde que não haja má-fé nem erro grosseiro.","rec"],
+["A ideia de que, em regra, cada decisão deve ser impugnada por um recurso adequado corresponde a qual princípio?",
+ ["Fungibilidade","Unirrecorribilidade","Duplo grau de jurisdição","Voluntariedade"],1,
+ "A unirrecorribilidade traduz a ideia de que, em regra, para cada decisão existe o recurso adequado, ressalvadas as situações excepcionais.","rec"],
+["Em relação aos recursos, o efeito devolutivo significa, em essência:",
+ ["Que o processo obrigatoriamente volta ao primeiro grau.","Que a matéria impugnada é submetida ao reexame do órgão competente para apreciar o recurso.","Que a sentença deixa automaticamente de produzir qualquer efeito.","Que o próprio juiz é obrigado a se retratar."],1,
+ "O efeito devolutivo relaciona-se à transferência da matéria impugnada para apreciação do órgão competente no julgamento do recurso.","rec"],
+["Considere duas situações: I — o juiz reconhece que não existem elementos suficientes para levar o acusado ao Júri; II — o juiz reconhece de forma segura uma causa que permite absolver o acusado desde logo. Qual combinação está correta?",
+ ["I = pronúncia; II = impronúncia","I = impronúncia; II = absolvição sumária","I = desclassificação; II = pronúncia","I = absolvição sumária; II = desclassificação"],1,
+ "A primeira situação corresponde à impronúncia, por falta dos elementos necessários para submeter o acusado aos jurados. A segunda corresponde à absolvição sumária, que é decisão de mérito favorável ao acusado.","jury"],
 ];
 
 const LAWS=[
@@ -487,14 +525,19 @@ document.querySelector("#shuffleCards").onclick=()=>{cards.sort(()=>Math.random(
 renderCard();
 
 let filter="all",order=QUESTIONS.map((_,i)=>i),answers={};
-function isLaw(q){return q[3].includes("CPP")||q[3].includes("CP")||q[3].includes("STF")}
-function passes(q){return filter==="all"||(filter==="law"?isLaw(q):!isLaw(q))}
+function passes(q){
+  if(filter==="all")return true;
+  if(filter==="jury")return q[4]==="jury";
+  if(filter==="rec")return q[4]==="rec";
+  return true;
+}
 function renderQuiz(){
  const box=document.querySelector("#quiz");box.innerHTML="";let n=0;
  order.forEach(idx=>{
   const q=QUESTIONS[idx];if(!passes(q))return;n++;
   const el=document.createElement("div");el.className="q";
-  el.innerHTML=`<span class="tag">${isLaw(q)?"Lei seca":"Aula"}</span><div class="stem"><b>${n}. ${q[0]}</b></div>`+
+  const tag=q[4]==="jury"?"Júri":"Recursos";
+  el.innerHTML=`<span class="tag">${tag}</span><div class="stem"><b>${n}. ${q[0]}</b></div>`+
    q[1].map((o,k)=>`<button class="opt" data-k="${k}"><b>${"ABCD"[k]})</b> ${o}</button>`).join("")+
    `<div class="ex" hidden></div>`;
   const bs=el.querySelectorAll(".opt");
@@ -513,6 +556,8 @@ function updateScore(){
  let total=0,answered=0,correct=0;
  QUESTIONS.forEach((q,i)=>{if(!passes(q))return;total++;if(answers[i]!==undefined){answered++;if(answers[i]===q[2])correct++}});
  document.querySelector("#score").textContent=`Acertos: ${correct}/${answered} · Questões: ${total}`;
+ const pct=total?Math.round(answered/total*100):0;
+ document.getElementById("bar").style.width=pct+"%";
 }
 document.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>{
  filter=b.dataset.filter;
