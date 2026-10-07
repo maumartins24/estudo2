@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Processo Penal N1 – Rito comum, Júri e Recursos</title>
+<style>
+:root{--bg:#eef2f1;--fg:#16231f;--mut:#5a6b66;--card:#fff;--ac:#0f6b5c;--acf:#fff;--ok:#1b7a3d;--no:#b3261e;--ln:#cfd9d6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101a18;--fg:#e6efec;--mut:#9bb0aa;--card:#1a2724;--ac:#4cc3ad;--acf:#07201b;--ok:#5fd68a;--no:#ff8a80;--ln:#2c3d39}}
+:root[data-theme="dark"]{--bg:#101a18;--fg:#e6efec;--mut:#9bb0aa;--card:#1a2724;--ac:#4cc3ad;--acf:#07201b;--ok:#5fd68a;--no:#ff8a80;--ln:#2c3d39}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 -apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:640px;margin:0 auto;padding:16px}
+h1{font:700 22px/1.2 Georgia,serif;margin:4px 0 12px}
+nav{display:flex;gap:6px;margin-bottom:14px;overflow-x:auto}
+nav button,.btn{flex:1;white-space:nowrap;padding:10px;border:1px solid var(--ln);background:var(--card);color:var(--fg);border-radius:8px;font:600 15px inherit;font-family:inherit}
+nav button.on,.btn.p{background:var(--ac);color:var(--acf);border-color:var(--ac)}
+.card{background:var(--card);border:1px solid var(--ln);border-radius:10px;padding:16px}
+#fc{min-height:230px;display:flex;flex-direction:column;justify-content:center;cursor:pointer;font:18px/1.5 Georgia,serif}
+#fc small{color:var(--mut);font:13px sans-serif;margin-bottom:8px}
+.row{display:flex;gap:8px;margin-top:12px}
+select{width:100%;padding:10px;border-radius:8px;border:1px solid var(--ln);background:var(--card);color:var(--fg);margin-bottom:10px;font-size:15px}
+.opt{display:block;width:100%;text-align:left;margin-top:8px;padding:12px;border:1px solid var(--ln);border-radius:8px;background:var(--card);color:var(--fg);font:15px/1.4 inherit;font-family:inherit}
+.opt.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 18%,var(--card))}
+.opt.no{border-color:var(--no);background:color-mix(in srgb,var(--no) 18%,var(--card))}
+.ex{margin-top:12px;padding:12px;border-left:4px solid var(--ac);background:color-mix(in srgb,var(--ac) 10%,var(--card));border-radius:4px;font-size:15px}
+.mut{color:var(--mut);font-size:14px}
+.sec h2{font:700 17px Georgia,serif;margin:18px 0 6px;color:var(--ac)}
+.sec ul{margin:0;padding-left:20px}.sec li{margin:5px 0}
+.warn{border-left:4px solid var(--no);padding-left:12px;margin:8px 0}
+.hide{display:none}
+.tablewrap{overflow-x:auto;border:1px solid var(--ln);border-radius:10px;margin:10px 0;background:var(--card)}
+table{border-collapse:collapse;width:100%;font-size:14.5px}th,td{padding:9px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--ln)}th{color:var(--ac)}tr:last-child td{border-bottom:0}
+h2{font:700 18px Georgia,serif;color:var(--ac);margin:20px 0 6px}
+.alert{border-left:4px solid #c8871a;background:color-mix(in srgb,#c8871a 14%,var(--card));padding:10px 12px;border-radius:0 8px 8px 0;margin:10px 0}.alert.red{border-color:var(--no)}.alert.blue{border-color:var(--ac)}.alert b{display:block}
+.flow{counter-reset:s;list-style:none;padding:0}.flow li{position:relative;padding:9px 10px 9px 46px;margin:7px 0;background:var(--card);border:1px solid var(--ln);border-radius:8px}.flow li::before{counter-increment:s;content:counter(s);position:absolute;left:10px;top:9px;width:26px;height:26px;border-radius:50%;background:var(--ac);color:var(--acf);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+</style></head><body><main>
+<h1>Processo Penal N1</h1><p class="mut" style="margin:-6px 0 12px">Baseado nos slides da Profa. Greice Fuller e nas anotações de aula</p>
+<nav id="tabs"></nav>
+
+<section class="tab" data-title="Rito comum">
+<h1>Rito comum e nulidades</h1>
+<div class="alert"><b>Fonte</b>Anotações das aulas de 19/08, 16/09 e 30/09. A aula de 23/09 está em branco nas anotações.</div>
+<h2>Inquérito x processo</h2>
+<div class="tablewrap"><table><tr><th></th><th>Inquérito policial</th><th>Processo (jurisdicional)</th></tr>
+<tr><td>Natureza</td><td>Procedimento <b>administrativo</b></td><td><b>Jurisdicional</b></td></tr>
+<tr><td>Quem conduz</td><td>Autoridade policial (delegado)</td><td>Juiz, que diz o direito</td></tr>
+<tr><td>Finalidade</td><td>Investigativa: provas de autoria e materialidade</td><td>Julgar a acusação</td></tr></table></div>
+<h2>Linha do tempo</h2>
+<ol class="flow"><li>Relatório do IP vai ao <b>MP</b>. Se houver o mínimo de provas, oferece <b>denúncia</b>.</li><li>O juiz <b>rejeita</b> (condições da ação) ou <b>recebe</b> a denúncia.</li><li><b>Citação</b>: ciência + chamamento.</li><li><b>Resposta à acusação</b> (resposta escrita).</li></ol>
+<div class="alert red"><b>Recurso</b>Não há recurso contra o recebimento da denúncia, somente contra a rejeição.</div>
+<h2>Nulidades (aula 16/09)</h2>
+<ul><li>Nulidade é violação de norma processual ou do procedimento; a violação gera uma consequência (sanção).</li><li><b>Princípios:</b> prejuízo; causalidade ou consequencialidade; interesse.</li><li><b>Nulidade absoluta</b>: fere princípios constitucionais.</li></ul>
+</section>
+
+<section class="tab" data-title="Júri">
+<h1>Procedimento do Tribunal do Júri</h1>
+<div class="alert red"><b>Erro no slide</b>O slide cita "arts. 460 a 497 do CP". O rito do Júri é do <b>CPP</b>, como nas anotações.</div>
+<h2>Aspectos gerais</h2>
+<div class="tablewrap"><table>
+<tr><td><b>Competência</b></td><td>Crimes <b>dolosos</b> contra a vida, tentados ou consumados: homicídio (feminicídio), infanticídio, auxílio, instigação ou induzimento ao suicídio e aborto. Mais os <b>conexos</b> (ex.: injúria + incêndio).</td></tr>
+<tr><td><b>Fundamento</b></td><td>Garantia individual (art. 5º, XXXVIII, CF). Não pode ser suprimido: cláusula pétrea (art. 60, §4º, IV, CF).</td></tr>
+<tr><td><b>Justiça</b></td><td>Comum, estadual ou federal.</td></tr>
+<tr><td><b>Juízes</b></td><td>Cidadãos são juízes de fato; o juiz-presidente é togado (juiz de direito).</td></tr>
+<tr><td><b>Latrocínio</b></td><td>Fora do Júri: Súmula 603 STF.</td></tr></table></div>
+<h2>Princípios</h2>
+<div class="tablewrap"><table>
+<tr><td><b>Plenitude de defesa</b></td><td>Argumentos técnicos e não técnicos (ex.: emoção). Ampla defesa admite qualquer tese jurídica.</td></tr>
+<tr><td><b>Sigilo das votações</b></td><td>Sala secreta, contra coação. Violação: nulidade absoluta e dissolução do corpo de jurados.</td></tr>
+<tr><td><b>Soberania dos veredictos</b></td><td>Exceções: pena fixada pelo juiz-presidente; anulação por nulidade; cassação por decisão manifestamente contrária à prova (art. 593, §3º, CPP), com novo julgamento.</td></tr></table></div>
+<h2>Órgão colegiado</h2>
+<p>1 juiz-presidente + 25 jurados (juízes leigos, "de fato"). <b>7 são sorteados</b> e a decisão é por maioria. Leitura: arts. 425, 426, 432 e 433 CPP (lista geral).</p>
+<h2>1ª fase: sumário da culpa (<i>judicium accusationis</i>)</h2>
+<p>Procedimento escalonado ou bifásico. 2ª fase: juízo da causa (<i>judicium causae</i>), em plenário.</p>
+<ol class="flow"><li>Denúncia: rejeição ou recebimento.</li><li>Citação e <b>resposta escrita em 10 dias</b> (art. 406).</li><li>Manifestação do MP e do querelante, se o réu arguir preliminares ou juntar documentos (art. 409).</li><li><b>Audiência de instrução e julgamento</b> (art. 411): vítima; testemunhas de acusação e defesa; peritos e reconhecimentos; interrogatório ("sistema presidencialista"); alegações orais.</li><li><b>Decisão</b>: pronúncia, impronúncia, absolvição sumária ou desclassificação.</li></ol>
+<h2>As quatro decisões</h2>
+<div class="tablewrap"><table><tr><th>Decisão</th><th>Natureza e recurso</th><th>Pontos-chave</th></tr>
+<tr><td><b>Pronúncia</b> (art. 413)</td><td>Processual, interlocutória não terminativa. <b>RESE</b> (art. 581, IV)</td><td>Materialidade + indícios suficientes de autoria. In dubio pro societate. Sem coisa julgada material. Efeitos: submete ao Júri, delimita a acusação, interrompe a prescrição (art. 117 CP).</td></tr>
+<tr><td><b>Impronúncia</b> (art. 414)</td><td>Sentença terminativa, sem mérito. <b>Apelação</b></td><td>Sem prova da materialidade e de indícios de autoria. Novas provas: nova denúncia (parágrafo único).</td></tr>
+<tr><td><b>Absolvição sumária</b> (art. 415)</td><td>Decisão de mérito, coisa julgada material. <b>Apelação</b></td><td>I inexistência do fato; II não ser autor ou partícipe; III fato não é infração penal; IV isenção de pena ou exclusão do crime.</td></tr>
+<tr><td><b>Desclassificação</b> (art. 419)</td><td>Não terminativa. <b>RESE</b> (art. 581, II)</td><td>Crime não doloso contra a vida; remessa ao juízo competente (ex.: tentativa de homicídio para lesão grave). O novo juízo é obrigado a receber? Pode suscitar conflito.</td></tr>
+<tr><td><b>Despronúncia</b></td><td>Revogação da pronúncia</td><td>Ocorre no RESE: retratação do juiz ou provimento pelo Tribunal. Exclui o julgamento pelo Júri.</td></tr></table></div>
+<div class="alert red"><b>Erro nas anotações</b>"Isenção de pena = causa extintiva de punibilidade" está errado. Isenção de pena (art. 415, IV) é excludente de culpabilidade. Extinção da punibilidade é outra figura (art. 107 CP).</div>
+<h2>Observações do plenário</h2>
+<ul><li><b>Desaforamento</b> (art. 427): Súmula 712 STF, nula a decisão sem audiência da defesa (contraditório).</li>
+<li><b>Incomunicabilidade</b>: testemunhas (art. 460); jurados entre si e com outrem (art. 466, §1º). Quebra: nulidade do julgamento.</li>
+<li><b>Provas novas</b> (art. 479): abre-se oportunidade à outra parte, prazo de 3 dias. PowerPoint e nulidade relativa (STJ, REsp 1.339.266/DF) são pontos em aberto no slide.</li>
+<li><b>Debates:</b> MP 1h30; defesa 1h30; réplica 1h; tréplica 1h; apartes são intervenções.</li></ul>
+<h2>Sequência do plenário</h2>
+<ol class="flow"><li>Presença das partes e jurados; sorteio dos jurados</li><li>Oitiva da vítima; testemunhas de acusação e de defesa</li><li>Acareações, reconhecimentos, peritos, leitura de peças</li><li>Interrogatório</li><li>Sustentação da defesa, réplica, tréplica</li><li>Reinquirição de testemunhas e diligências</li><li>Questionário, votação, sentença e ata</li></ol>
+</section>
+
+<section class="tab" data-title="Jurados">
+<h1>Os jurados</h1>
+<h2>Requisitos</h2>
+<ul><li>Nacionalidade brasileira e cidadania.</li><li>Maior de 18 anos (responsabilização criminal).</li><li>Notória idoneidade (ex.: antecedentes criminais).</li><li>Alfabetização (cédulas, leitura do relatório e das fases do processo: arts. 472, parágrafo único, e 480, §3º).</li><li>Gozo das faculdades mentais.</li><li>Slide pergunta: é necessário residir na comarca?</li></ul>
+<h2>Deveres e exceções</h2>
+<div class="tablewrap"><table>
+<tr><td><b>Obrigatoriedade</b></td><td>Art. 436, caput. Recusa injustificada gera multa (art. 436, §2º).</td></tr>
+<tr><td><b>Isenção</b> (art. 437)</td><td>Damásio: isenção ≠ proibição. Se a pessoa não pedir para ser dispensada, pode servir.</td></tr>
+<tr><td><b>Escusa de consciência</b> (art. 438)</td><td>Serviço alternativo imposto pelo juiz. Recusa leva à suspensão dos direitos políticos.</td></tr></table></div>
+<h2>Direitos e vantagens (arts. 439 a 441)</h2>
+<ul><li>Presunção de idoneidade (art. 439).</li><li>Preferência em igualdade de condições nas licitações públicas (art. 440).</li><li>Sem desconto nos vencimentos (art. 441).</li><li>Prisão especial (art. 295, X; o slide marca com "??").</li></ul>
+<div class="alert blue"><b>Atenção</b>Os direitos valem para o <b>exercício</b> da função, não para a mera figuração na lista.</div>
+<h2>Responsabilidade</h2>
+<p>Jurados que são funcionários públicos: arts. 327 CP c/c 445 CPP. Corrupção passiva (solicitação de dinheiro ou decisão).</p>
+</section>
+
+<section class="tab" data-title="Recursos">
+<h1>Teoria geral dos recursos</h1>
+<div class="card"><b>Conceito:</b> meio jurídico processual pelo qual se provoca o <b>reexame total ou parcial</b> de uma decisão.<br><b>Fundamentos:</b> falibilidade do juiz; inconformismo da parte; duplo grau de jurisdição (implícito na CF, segundo a aula).</div>
+<h2>Pressupostos e critérios</h2>
+<div class="tablewrap"><table>
+<tr><td><b>Lógico</b></td><td>Ato decisório</td></tr><tr><td><b>Fundamental</b></td><td>Sucumbência</td></tr>
+<tr><td><b>Objetivos</b></td><td>Autorização legal; tempestividade; formalidades (forma + motivação + preparo)</td></tr>
+<tr><td><b>Subjetivos</b></td><td>Interesse de agir (sucumbência); legitimidade das partes</td></tr></table></div>
+<h2>Juízo de admissibilidade (prelibação)</h2>
+<p>Análise nos juízos <i>a quo</i> e <i>ad quem</i> (admissibilidade e provimento: delibação). Se não admitido:</p>
+<ul><li>Apelação: RESE (o slide cita art. 581, V).</li><li>RESE: carta testemunhável (art. 639).</li><li>Recurso especial e extraordinário: agravo.</li></ul>
+<div class="alert"><b>Confira</b>Para apelação denegada, meu entendimento é que o inciso seria o XV do art. 581. Não tenho certeza; verifique no código.</div>
+<h2>Efeitos</h2>
+<div class="tablewrap"><table>
+<tr><td><b>Devolutivo</b></td><td>Regra dos recursos</td></tr><tr><td><b>Suspensivo</b></td><td>Não é compulsório</td></tr>
+<tr><td><b>Regressivo</b></td><td>Diferido ou iterativo: juízo de retratação (RESE e agravo em execução)</td></tr>
+<tr><td><b>Extensivo</b></td><td>Art. 580 CPP</td></tr></table></div>
+<h2>Princípios</h2>
+<ul><li><b>Fungibilidade</b> (art. 579): desde que sem má-fé (ex.: perda de prazo) e sem erro grosseiro.</li><li><b>Unirrecorribilidade</b>: cada decisão, um recurso, com exceções.</li><li><b>Duplo grau:</b> é constitucionalmente expresso?</li><li><b>Voluntariedade</b> (≠ recurso de ofício).</li></ul>
+<h2>Reformatio</h2>
+<div class="tablewrap"><table><tr><th>In pejus</th><th>In mellius</th></tr>
+<tr><td>Recurso da defesa e o Tribunal agrava a situação do réu. Vedada: art. 617 CPP + Súmula 160 STF. Indireta: anulada a condenação em recurso exclusivo da defesa, proibido agravar (STF).</td><td>Recurso exclusivo da acusação melhora a situação do réu. Prevalece no STJ e STF. Crítica da doutrina: julgamento extra petita. Razão: a proibição legal é só da in pejus.</td></tr></table></div>
+<h2>Extinção anormal e classificação</h2>
+<ul><li>Há recebimento, mas não julgamento. <b>Desistência</b> (querelante, assistente, defesa e MP? art. 576).</li><li><b>Deserção:</b> falta de preparo (art. 806, §2º; hoje, ação privada exclusiva ou personalíssima) e fuga (Súmula 347 STF; revogação do art. 595).</li><li><b>Constitucionais:</b> HC, MS, recurso especial e extraordinário. <b>Legais:</b> RESE, apelação, embargos infringentes ou de nulidade. <b>Regimentais:</b> agravo regimental.</li></ul>
+</section>
+
+<section class="tab" data-title="Cards" id="p1">
+<select id="tp"><option value="">Todos os temas</option><option>Rito comum</option><option>Nulidades</option><option>Júri</option><option>Jurado</option><option>Recursos</option></select>
+<div class="card" id="fc"></div>
+<div class="row"><button class="btn" id="pv">Anterior</button><button class="btn p" id="fl">Virar</button><button class="btn" id="nx">Próximo</button></div>
+<div class="row"><button class="btn" id="sh">Embaralhar</button></div>
+</section>
+
+<section class="tab hide" data-title="Simulado" id="p2"><div class="card" id="qz"></div></section>
+</main>
+<script>
+const C=[
+["Rito comum","Inquérito policial: natureza e finalidade?","Procedimento administrativo, conduzido por autoridade administrativa (delegado). Finalidade investigativa: buscar provas de autoria e materialidade. (Aula 19/08)"],
+["Rito comum","Procedimento administrativo x jurisdicional?","Administrativo: conduzido pela autoridade policial. Jurisdicional: presidido por juiz, que diz o direito. (Aula 19/08)"],
+["Rito comum","Linha do tempo até a resposta à acusação?","Relatório do IP → MP oferece denúncia → juiz rejeita (condições da ação) ou recebe → citação → resposta à acusação (escrita). (Aula 19/08)"],
+["Rito comum","Cabe recurso contra o recebimento da denúncia?","Não. Só há recurso contra a rejeição. (Aula 30/09)"],
+["Rito comum","O que é citação?","Ciência + chamamento do réu ao processo. (Aula 16/09)"],
+["Nulidades","Princípios das nulidades?","Prejuízo; causalidade ou consequencialidade; interesse. (Aula 16/09)"],
+["Nulidades","O que é nulidade e qual sua consequência?","Violação de norma processual ou do procedimento; gera uma consequência (sanção). Nulidade absoluta é a que fere princípios constitucionais. (Aula 16/09)"],
+["Júri","Competência do Tribunal do Júri?","Crimes dolosos contra a vida, tentados ou consumados: homicídio (feminicídio), infanticídio, participação em suicídio e aborto. Mais crimes conexos (ex.: injúria + incêndio). Garantia individual (art. 5º, XXXVIII, CF)."],
+["Júri","Onde fica o rito do Júri? (atenção ao slide)","O slide diz \"arts. 460 a 497 do CP\", mas é do CPP. Nas anotações aparece \"CPP\"."],
+["Júri","O Júri pode ser suprimido?","Não. É garantia individual e cláusula pétrea (art. 60, §4º, IV, CF). Justiça comum, estadual ou federal."],
+["Júri","Latrocínio é do Júri?","Não. Súmula 603 STF."],
+["Júri","Quem são os juízes do Júri?","Cidadãos são juízes de fato; juiz togado (juiz de direito) é o juiz-presidente. Competência MÍNIMA das infrações: conexos também entram."],
+["Júri","Princípios do Júri nos slides?","A) plenitude de defesa (informações, motivos, defesa técnica); B) sigilo nas votações (coação, sala secreta); C) soberania dos veredictos."],
+["Júri","Ampla defesa x plenitude de defesa?","Ampla: qualquer tese defensiva jurídica. Plenitude: argumentos técnicos e não técnicos (ex.: emoção, parte psicológica). (Aula 26/08)"],
+["Júri","Violação do sigilo da votação?","Nulidade absoluta, com dissolução do corpo de jurados. (Aula 26/08)"],
+["Júri","Exceções à soberania dos veredictos?","1) decisão do juiz-presidente quanto à pena; 2) anulação do veredicto (nulidade); 3) cassação: decisão manifestamente contrária à prova dos autos (art. 593, §3º, CPP). Resultado: novo julgamento, o Tribunal não absolve nem condena."],
+["Júri","Órgão colegiado?","1 juiz-presidente + 25 jurados (juízes leigos, de fato); 7 são sorteados. Decisão por maioria. Ler arts. 425, 426, 432 e 433 CPP (lista geral)."],
+["Jurado","Requisitos para o serviço do Júri?","Nacionalidade brasileira; cidadania; maior de 18 anos; notória idoneidade (ex.: antecedentes); alfabetização; gozo das faculdades mentais. Slide pergunta: precisa residir na comarca?"],
+["Jurado","Obrigatoriedade, escusa de consciência e isenção?","Serviço obrigatório (art. 436); recusa injustificada gera multa (§2º). Escusa de consciência (art. 438): serviço alternativo imposto pelo juiz; recusa leva à suspensão dos direitos políticos. Isenção (art. 437): Damásio, isenção ≠ proibição; se a pessoa não pedir, pode servir."],
+["Jurado","Direitos e vantagens do jurado?","Presunção de idoneidade (art. 439); preferência em licitações em igualdade de condições (art. 440); sem desconto nos vencimentos (art. 441); prisão especial (art. 295, X, o slide marca com ??). Vale o exercício, não a mera figuração na lista."],
+["Jurado","Jurado que é funcionário público?","Arts. 327 CP c/c 445 CPP: responde por corrupção passiva (solicitação de dinheiro ou decisão)."],
+["Júri","Fases do procedimento?","Escalonado ou bifásico. 1ª fase: sumário da culpa (judicium accusationis), juiz singular, rito comum ordinário. 2ª fase: juízo da causa (judicium causae), plenário com o juiz-presidente."],
+["Júri","1ª fase: passo a passo?","Denúncia: rejeição ou recebimento → citação → resposta escrita em 10 dias (art. 406) → manifestação do MP e do querelante se houver preliminares ou documentos (art. 409) → audiência de instrução e julgamento (art. 411)."],
+["Júri","Ordem da audiência de instrução (art. 411)?","Declarações da vítima; testemunhas de acusação e defesa; esclarecimentos de peritos e reconhecimentos; interrogatório (sistema presidencialista); alegações orais; sentença (pronúncia, impronúncia, absolvição sumária ou desclassificação)."],
+["Júri","Quatro decisões da 1ª fase e artigos?","Pronúncia (art. 413); impronúncia (art. 414); absolvição sumária (art. 415); desclassificação (art. 419)."],
+["Júri","Pronúncia: requisitos e natureza?","Existência material do fato + indícios suficientes de autoria = réu vai ao Júri. Não é decisão de mérito; processual, interlocutória não terminativa (mista nas anotações). In dubio pro societate. Sem coisa julgada material."],
+["Júri","Efeitos e recurso da pronúncia?","Admissibilidade e submissão ao Júri; delimitação dos limites da acusação; interrupção da prescrição (art. 117 CP). Recurso em sentido estrito (art. 581, IV)."],
+["Júri","Despronúncia?","Pronúncia é revogada. Ocorre quando, no RESE, o próprio juiz se retrata ou o Tribunal reforma. Resultado: exclusão do julgamento pelo Júri."],
+["Júri","Impronúncia (art. 414)?","Ausência de prova da materialidade e de indícios suficientes de autoria. Sentença terminativa, sem julgamento do mérito. Recurso: apelação. Novas provas: nova denúncia (parágrafo único)."],
+["Júri","Absolvição sumária (art. 415)?","I inexistência do fato; II não ser autor ou partícipe; III fato não constitui infração penal; IV isenção de pena ou exclusão do crime. Decisão de mérito, sentença definitiva, apelação, coisa julgada material. Atenção: nas anotações, \"isenção de pena = extinção da punibilidade\" é erro; é excludente de culpabilidade."],
+["Júri","Desclassificação (art. 419)?","Reconhece crime não doloso contra a vida. Remessa dos autos ao juízo competente (ex.: tentativa de homicídio para lesão corporal grave). Não terminativa. RESE (art. 581, II). Slide pergunta: o novo juízo é obrigado a receber? (possível suscitar conflito)."],
+["Júri","Desaforamento?","Art. 427 CPP (foro). Pedido por requerimento ou representação do juiz, depende da hipótese. Súmula 712 STF: nula a decisão sem audiência da defesa (contraditório)."],
+["Júri","Incomunicabilidade?","Testemunhas (art. 460) e jurados entre si e com terceiros (art. 466, §1º). Slide pergunta: e esclarecimentos? Quebra: nulidade do julgamento."],
+["Júri","Provas novas e PowerPoint em plenário?","Art. 479 CPP: abertura de oportunidade à outra parte, com prazo de 3 dias (aula). Nulidade relativa? Slide cita STJ, REsp 1.339.266/DF. PowerPoint fica como questão aberta no slide."],
+["Júri","Debates em plenário?","MP 1h30; defesa 1h30; réplica da acusação 1h; tréplica da defesa 1h; apartes são intervenções."],
+["Júri","Sequência do plenário (A a O)?","Presença das partes e jurados; sorteio; vítima; testemunhas de acusação; de defesa; acareações, reconhecimentos, peritos, leitura de peças; interrogatório; sustentação da defesa; réplica; tréplica; reinquirição e diligências; questionário; votação; sentença; ata."],
+["Recursos","Conceito, fundamentos e pressupostos?","Conceito: meio processual para reexame total ou parcial de decisão. Fundamentos: falibilidade do juiz, inconformismo da parte, duplo grau (implícito na CF). Pressupostos: lógico (ato decisório), fundamental (sucumbência), recursal (objetivos e subjetivos)."],
+["Recursos","Critérios objetivos e subjetivos?","Objetivos: autorização legal; tempestividade; formalidades (forma + motivação + preparo). Subjetivos: interesse de agir (sucumbência) e legitimidade."],
+["Recursos","Juízo de admissibilidade?","Análise nos juízos a quo e ad quem (admissibilidade e provimento). Não admitidos: apelação → RESE (slide cita art. 581, V); RESE → carta testemunhável (art. 639); REsp e RE → agravo."],
+["Recursos","Efeitos dos recursos?","Devolutivo (regra); suspensivo (não é compulsório); regressivo, diferido ou iterativo (juízo de retratação: RESE e agravo em execução); expansivo ou extensivo (art. 580)."],
+["Recursos","Princípios dos recursos?","Fungibilidade (art. 579: sem má-fé, ex.: perda de prazo, e erro não grosseiro); unirrecorribilidade (cada decisão, um recurso); duplo grau (é constitucionalmente expresso?); voluntariedade (≠ recurso de ofício)."],
+["Recursos","Reformatio in pejus?","Recurso da defesa em que o Tribunal agrava a situação do réu: art. 617 CPP + Súmula 160 STF. Indireta: anulada a condenação em recurso exclusivo da defesa, proibição de agravamento (STF)."],
+["Recursos","Reformatio in mellius?","Recurso exclusivo da acusação melhora a situação do réu. Prevalece no STJ e STF; doutrina critica (julgamento extra petita). Razão: a proibição legal é só da reformatio in pejus."],
+["Recursos","Extinção anormal?","Há recebimento, mas não julgamento. Desistência (querelante, assistente, defesa e MP? art. 576). Deserção: falta de preparo (art. 806, §2º; hoje, ação privada exclusiva ou personalíssima) e fuga (Súmula 347 STF; revogação do art. 595)."],
+["Recursos","Classificação dos recursos?","Constitucionais: HC, MS (natureza jurídica), REsp, RE. Legais: RESE, apelação, embargos infringentes ou de nulidade. Regimentais: agravo regimental."]];
+const Q=[
+["O que é citação segundo a aula?",["Chamamento sem ciência","Ciência + chamamento","Intimação para a audiência","Resposta à acusação"],1,"Aula 16/09: citação = ciência + chamamento."],
+["Contra o recebimento da denúncia:",["Cabe RESE","Cabe apelação","Não há recurso, só contra a rejeição","Cabe agravo"],2,"Aula 30/09."],
+["Nulidade absoluta é a que:",["Não gera prejuízo","Fere princípios constitucionais","Depende de arguição da parte","Só atinge a defesa"],1,"Aula 16/09."],
+["Latrocínio é julgado:",["Pelo Júri","Pelo juiz singular","Pelo Tribunal de Justiça","Pelo juiz-presidente com jurados"],1,"Súmula 603 STF."],
+["Plenitude de defesa, ao contrário da ampla defesa, admite:",["Só teses jurídicas","Argumentos técnicos e não técnicos, como a emoção","Defesa sem advogado","Prazo ilimitado"],1,"Aula 26/08."],
+["Violação do sigilo da votação gera:",["Nulidade relativa","Mera irregularidade","Nulidade absoluta e dissolução do corpo de jurados","Multa"],2,"Aula 26/08."],
+["Cassação por decisão manifestamente contrária à prova dos autos (art. 593, §3º) leva a:",["Condenação pelo Tribunal","Absolvição pelo Tribunal","Novo julgamento","Redução da pena"],2,"Exceção à soberania dos veredictos."],
+["O Júri é composto por:",["1 juiz e 12 jurados","1 juiz-presidente e 25 jurados, dos quais 7 são sorteados","3 juízes e 7 jurados","25 jurados sem juiz"],1,"Slide Órgão colegiado."],
+["Quem é isento do serviço do Júri (art. 437) e não pede dispensa:",["É proibido de servir","Pode servir (isenção ≠ proibição)","Sofre multa","É excluído"],1,"Damásio, nos slides."],
+["Recusa ao serviço alternativo imposto na escusa de consciência (art. 438):",["Multa apenas","Prisão","Suspensão dos direitos políticos","Nada"],2,"Slide Observações sobre jurados."],
+["Prazo da resposta escrita na 1ª fase do Júri (art. 406):",["5 dias","10 dias","15 dias","20 dias"],1,"Slide 1ª fase."],
+["A pronúncia exige:",["Prova plena de autoria","Materialidade + indícios suficientes de autoria","Confissão","Apenas a denúncia"],1,"Art. 413; vale in dubio pro societate."],
+["Recurso contra a pronúncia:",["Apelação","RESE (art. 581, IV)","Embargos infringentes","Carta testemunhável"],1,"Slide Pronúncia."],
+["Impronúncia é:",["Decisão de mérito com coisa julgada material","Sentença terminativa, sem julgamento do mérito","Interlocutória não terminativa","Absolvição"],1,"Recurso: apelação; novas provas permitem nova denúncia."],
+["Absolvição sumária (art. 415) é:",["Decisão sem mérito","Decisão de mérito com coisa julgada material","Interlocutória","Irrecorrível"],1,"Sentença definitiva, apelação."],
+["Desclassificação (art. 419) tem como recurso:",["Apelação","RESE (art. 581, II)","Agravo","Nenhum"],1,"Slide Desclassificação."],
+["Desaforamento sem audiência da defesa:",["É válido","É nulo (Súmula 712 STF)","Só se o MP pedir","É irrecorrível"],1,"Contraditório."],
+["Tempos de debate no plenário:",["1h cada, réplica 30 min","1h30 cada, réplica 1h, tréplica 1h","2h cada","45 min cada"],1,"Slide Observações."],
+["Fungibilidade recursal (art. 579) exige:",["Mesmo órgão","Ausência de má-fé e de erro grosseiro","Preparo","Anuência do MP"],1,"Slide Princípios."],
+["Em recurso exclusivo da defesa o Tribunal:",["Pode agravar a pena","Não pode agravar a situação do réu (art. 617 + Súmula 160)","Pode agravar se houver nulidade","Deve remeter ao MP"],1,"Reformatio in pejus."],
+["Efeito regressivo (retratação) existe no:",["RESE","Recurso extraordinário","Embargos infringentes","Revisão criminal"],0,"RESE e agravo em execução."]];
+const $=s=>document.querySelector(s);
+const secs=[...document.querySelectorAll("section.tab")],nv=$("#tabs");
+secs.forEach((s,i)=>{const b=document.createElement("button");b.textContent=s.dataset.title;b.onclick=()=>go(i);nv.appendChild(b)});
+function go(i){secs.forEach((s,j)=>{s.classList.toggle("hide",j!=i);nv.children[j].classList.toggle("on",j==i)});scrollTo(0,0)}go(0);
+let L=C.slice(),i=0,back=false;
+function fc(){const c=L[i];$("#fc").innerHTML=`<small>${c[0]} · ${i+1}/${L.length}</small>`+(back?c[2]:"<b>"+c[1]+"</b>")}
+function flt(){L=C.filter(c=>!$("#tp").value||c[0]==$("#tp").value);i=0;back=false;fc()}
+$("#tp").onchange=flt;
+$("#fc").onclick=$("#fl").onclick=()=>{back=!back;fc()};
+$("#nx").onclick=()=>{i=(i+1)%L.length;back=false;fc()};
+$("#pv").onclick=()=>{i=(i-1+L.length)%L.length;back=false;fc()};
+$("#sh").onclick=()=>{L.sort(()=>Math.random()-.5);i=0;back=false;fc()};
+fc();
+let q=0,sc=0;
+function rq(){const z=$("#qz");if(q>=Q.length){z.innerHTML=`<h2 style="margin:0">Resultado: ${sc} de ${Q.length}</h2><p class="mut">Refaça o simulado e revise os cards dos temas em que errou.</p><button class="btn p" style="width:100%" id="rs">Refazer</button>`;$("#rs").onclick=()=>{q=0;sc=0;rq()};return}
+const d=Q[q];z.innerHTML=`<div class="mut">Questão ${q+1} de ${Q.length}</div><p><b>${d[0]}</b></p>`+d[1].map((o,k)=>`<button class="opt" data-k="${k}">${"ABCD"[k]}) ${o}</button>`).join("")+`<div id="fb"></div>`;
+z.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{const k=+b.dataset.k;z.querySelectorAll(".opt").forEach((x,j)=>{x.disabled=true;if(j==d[2])x.classList.add("ok")});if(k==d[2])sc++;else b.classList.add("no");$("#fb").innerHTML=`<div class="ex">${d[3]}</div><button class="btn p" style="width:100%;margin-top:12px" id="go">Próxima</button>`;$("#go").onclick=()=>{q++;rq()}})}
+rq();
+</script></body></html>
