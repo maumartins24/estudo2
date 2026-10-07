@@ -33,6 +33,11 @@ table{border-collapse:collapse;width:100%;font-size:14.5px}th,td{padding:9px 11p
 h2{font:700 18px Georgia,serif;color:var(--ac);margin:20px 0 6px}
 .alert{border-left:4px solid #c8871a;background:color-mix(in srgb,#c8871a 14%,var(--card));padding:10px 12px;border-radius:0 8px 8px 0;margin:10px 0}.alert.red{border-color:var(--no)}.alert.blue{border-color:var(--ac)}.alert b{display:block}
 .flow{counter-reset:s;list-style:none;padding:0}.flow li{position:relative;padding:9px 10px 9px 46px;margin:7px 0;background:var(--card);border:1px solid var(--ln);border-radius:8px}.flow li::before{counter-increment:s;content:counter(s);position:absolute;left:10px;top:9px;width:26px;height:26px;border-radius:50%;background:var(--ac);color:var(--acf);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+.tb{display:flex;flex-wrap:wrap;gap:8px;align-items:center;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5}
+.pill{border:1px solid var(--ln);background:var(--card);color:var(--fg);padding:6px 12px;border-radius:99px;font:14px inherit;font-family:inherit}.pill.on{background:var(--ac);color:var(--acf);border-color:var(--ac)}
+.score{margin-left:auto;font-weight:700;color:var(--ac)}
+.q{background:var(--card);border:1px solid var(--ln);border-radius:10px;padding:14px;margin:12px 0}.q .stem{font-weight:600;margin:8px 0 6px}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:99px;background:color-mix(in srgb,var(--ac) 16%,var(--card));color:var(--ac)}.tag.esp{background:color-mix(in srgb,#c8871a 20%,var(--card));color:#c8871a}
 </style></head><body><main>
 <h1>Processo Penal N1</h1><p class="mut" style="margin:-6px 0 12px">Baseado nos slides da Profa. Greice Fuller e nas anotações de aula</p>
 <nav id="tabs"></nav>
@@ -173,7 +178,9 @@ h2{font:700 18px Georgia,serif;color:var(--ac);margin:20px 0 6px}
 <div class="row"><button class="btn" id="sh">Embaralhar</button></div>
 </section>
 
-<section class="tab hide" data-title="Simulado" id="p2"><select id="qf"><option value="0">Todas as questões</option><option value="1">Mais específicas (artigos, números, súmulas)</option><option value="2">Mais gerais</option></select><div class="card" id="qz"></div></section>
+<section class="tab hide" data-title="Simulado" id="p2"><p class="mut">Clique na alternativa. A correção e a explicação aparecem na hora.</p>
+<div class="tb"><button class="pill on" data-f="todas">Todas</button><button class="pill" data-f="ger">Gerais</button><button class="pill" data-f="esp">Específicas</button><button class="pill" id="qsh">Embaralhar</button><button class="pill" id="qrs">Recomeçar</button><span class="score" id="sc"></span></div>
+<div id="ql"></div></section>
 </main>
 <script>
 const C=[
@@ -315,10 +322,20 @@ $("#nx").onclick=()=>{i=(i+1)%L.length;back=false;fc()};
 $("#pv").onclick=()=>{i=(i-1+L.length)%L.length;back=false;fc()};
 $("#sh").onclick=()=>{L.sort(()=>Math.random()-.5);i=0;back=false;fc()};
 fc();
-let q=0,sc=0;
-function rq(){const z=$("#qz");if(q>=QQ.length){z.innerHTML=`<h2 style="margin:0">Resultado: ${sc} de ${QQ.length}</h2><p class="mut">Refaça o simulado e revise os cards dos temas em que errou.</p><button class="btn p" style="width:100%" id="rs">Refazer</button>`;$("#rs").onclick=()=>{q=0;sc=0;rq()};return}
-const d=QQ[q];z.innerHTML=`<div class="mut">Questão ${q+1} de ${QQ.length}</div><p><b>${d[0]}</b></p>`+d[1].map((o,k)=>`<button class="opt" data-k="${k}">${"ABCD"[k]}) ${o}</button>`).join("")+`<div id="fb"></div>`;
-z.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{const k=+b.dataset.k;z.querySelectorAll(".opt").forEach((x,j)=>{x.disabled=true;if(j==d[2])x.classList.add("ok")});if(k==d[2])sc++;else b.classList.add("no");$("#fb").innerHTML=`<div class="ex">${d[3]}</div><button class="btn p" style="width:100%;margin-top:12px" id="go">Próxima</button>`;$("#go").onclick=()=>{q++;rq()}})}
-$("#qf").onchange=e=>{const v=e.target.value;QQ=v=="1"?Q.filter(x=>x[4]):v=="2"?Q.filter(x=>!x[4]):Q;q=0;sc=0;rq()};
+let QF="todas",order=Q.map((_,i)=>i),ans={};
+const qfl=d=>QF=="todas"||(QF=="esp")==!!d[4];
+function rq(){const box=$("#ql");box.innerHTML="";let n=0;
+order.forEach(i=>{const d=Q[i];if(!qfl(d))return;n++;const sp=!!d[4];
+const el=document.createElement("div");el.className="q";
+el.innerHTML=`<span class="tag${sp?" esp":""}">${sp?"Específica":"Geral"}</span><div class="stem">${n}. ${d[0]}</div>`+d[1].map((o,k)=>`<button class="opt" data-k="${k}"><b>${"ABCD"[k]})</b> ${o}</button>`).join("")+`<div class="ex hide"><b>Gabarito: ${"ABCD"[d[2]]}.</b> ${d[3]}</div>`;
+const bs=el.querySelectorAll(".opt");
+const mark=s=>{bs.forEach((b,k)=>{b.disabled=true;if(k==d[2])b.classList.add("ok");else if(k==s)b.classList.add("no")});el.querySelector(".ex").classList.remove("hide")};
+if(ans[i]!==undefined)mark(ans[i]);
+bs.forEach(b=>b.onclick=()=>{ans[i]=+b.dataset.k;mark(ans[i]);score()});
+box.appendChild(el)});score()}
+function score(){let t=0,ok=0,a=0;Q.forEach((d,i)=>{if(!qfl(d))return;t++;if(ans[i]!==undefined){a++;if(ans[i]==d[2])ok++}});$("#sc").textContent=`Acertos: ${ok}/${a} (de ${t})`}
+document.querySelectorAll("#p2 .pill[data-f]").forEach(p=>p.onclick=()=>{QF=p.dataset.f;document.querySelectorAll("#p2 .pill[data-f]").forEach(x=>x.classList.toggle("on",x==p));rq()});
+$("#qsh").onclick=()=>{for(let i=order.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[order[i],order[j]]=[order[j],order[i]]}rq()};
+$("#qrs").onclick=()=>{ans={};rq()};
 rq();
 </script></body></html>
